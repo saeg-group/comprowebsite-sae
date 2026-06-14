@@ -178,6 +178,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Swipe event listeners for touch devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isSwiping = false;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            isSwiping = true;
+            stopProgress();
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            isSwiping = false;
+            startProgress();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // min distance to trigger swipe
+            const diffX = touchStartX - touchEndX;
+            if (Math.abs(diffX) > swipeThreshold) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+
         // Progress Bar & Auto-change tick loop
         function startProgress() {
             progressElapsed = 0;

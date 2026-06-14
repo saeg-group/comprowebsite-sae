@@ -37,6 +37,12 @@ html {
     font-size: 16px;
 }
 
+/* Keyboard navigation accessibility */
+*:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
 body {
     font-family: var(--font-primary);
     background-color: var(--light-cream);
@@ -108,7 +114,7 @@ img {
 }
 
 .section-title {
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
     margin-top: 6px;
 }
 
@@ -251,7 +257,7 @@ img {
 
 .hero-title {
     color: var(--crisp-white);
-    font-size: 3.5rem;
+    font-size: clamp(2.25rem, 6vw, 3.5rem);
     line-height: 1.15;
     margin-bottom: 20px;
     font-weight: 800;
@@ -285,6 +291,8 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 48px;
+    min-height: 48px;
 }
 
 .hero-social-links a:hover {
@@ -829,8 +837,8 @@ img {
         height: 240px;
     }
     .slider-control {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         top: 30%;
     }
     .slider-control.prev { left: 10px; }
@@ -875,8 +883,8 @@ img {
 }
 
 .social-links a {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 50%;
     display: flex;
@@ -1024,11 +1032,8 @@ img {
     .values-grid, .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-        grid-template-columns: repeat(2, 1fr);
-    }
     .hero-title {
-        font-size: 3rem;
+        font-size: clamp(2.25rem, 6vw, 3.5rem);
     }
 }
 
@@ -1064,10 +1069,13 @@ img {
         font-size: 1.1rem;
         width: 100%;
         text-align: center;
+        padding: 12px 0;
+        display: block;
     }
     
     .btn-nav {
         width: 80%;
+        padding: 12px 20px !important;
     }
 
     .hero-section {
@@ -1080,7 +1088,7 @@ img {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: clamp(2.25rem, 6vw, 3.5rem);
     }
     
     .about-grid, .usp-grid, .footer-grid {
@@ -1098,5 +1106,17 @@ img {
     
     .usp-image-col {
         order: -1;
+    }
+    
+    /* Standardize mobile section spacing */
+    .about-section,
+    .services-section,
+    .usp-section,
+    .gallery-section {
+        padding: 60px 0;
+    }
+    
+    .main-footer {
+        padding: 50px 0 20px;
     }
 }
